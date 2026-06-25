@@ -1,4 +1,11 @@
+using Microsoft.EntityFrameworkCore;
+using ReelTalk.Api.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// === NUEVO: Registramos nuestro DbContext y le decimos que use SQL Server ===
+var connectionString = builder.Configuration.GetConnectionString("CadenaSQL");
+builder.Services.AddDbContext<ReelTalkDbContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 

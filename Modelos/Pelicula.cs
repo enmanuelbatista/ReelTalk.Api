@@ -4,6 +4,12 @@ namespace ReelTalk.Api.Modelos
 {
     public class Pelicula
     {
+        // Constructor VACÍO obligatorio para Entity Framework Core
+        public Pelicula()
+        {
+        }
+
+
         public Pelicula(int idexternotmdb, string titulo, string sinopsis, DateTime fechalanzamiento, int duracionminutos, string? directores, string? actores,
             string? categorias) 
         {
