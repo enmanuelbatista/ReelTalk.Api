@@ -32,14 +32,14 @@ namespace ReelTalk.Api.Modelos
         // Estas van AFUERA del constructor, pero DENTRO de la clase.
         // Estas son las que guardan la información permanentemente en el objeto.
 
-        public int Id { get; private set; } // La base de datos asignará este ID automáticamente después
-        public int IDExternoTMDB { get; private set; }
-        public string Titulo { get; private set; }
-        public string Sinopsis { get; private set; }
-        public DateTime FechaLanzamiento { get; private set; }
-        public int DuracionMinutos { get; private set; }
-        public String? Directores { get; private set; }
-        public String? Actores { get; private set; }
-        public String? Categorias { get; private set; }
+        public int Id { get; set; } // SQL Server necesita poder escribir aquí al generar el ID
+        public int IDExternoTMDB { get; init; }
+        public string Titulo { get; init; } = string.Empty;
+        public string Sinopsis { get; init; } = string.Empty;
+        public DateTime FechaLanzamiento { get; init; }
+        public int DuracionMinutos { get; init; }
+        public string? Directores { get; init; }
+        public string? Actores { get; init; }
+        public string? Categorias { get; init; }
     }
 }
