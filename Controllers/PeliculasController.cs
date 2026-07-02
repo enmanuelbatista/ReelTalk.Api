@@ -47,6 +47,29 @@ namespace ReelTalk.Api.Controllers
 
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult BorrarPelicula(int id) 
+        {
+            // 1. Buscar si la película realmente existe en la base de datos
+            var pelicula = _context.Peliculas.Find(id);
+
+
+            // 2. Si no existe, responder con un Error 404 (Not Found)
+            if (pelicula == null)
+            {
+                return NotFound($"No se encontró ninguna película con el ID {id}.");
+            }
+
+            // 3. Si existe, decirle a EF Core que la remueva
+            _context.Peliculas.Remove(pelicula);
+
+            // 4. Guardar los cambios permanentemente en SQL Server
+            _context.SaveChanges();
+
+            // 5. Devolver una respuesta de éxito
+            return Ok(new {mensaje = $"La película '{pelicula.Titulo}' fue eliminada correctamente."});
+        }
+
     }
 
 }
