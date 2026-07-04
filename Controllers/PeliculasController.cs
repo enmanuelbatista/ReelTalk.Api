@@ -70,6 +70,22 @@ namespace ReelTalk.Api.Controllers
             return Ok(new {mensaje = $"La película '{pelicula.Titulo}' fue eliminada correctamente."});
         }
 
+        [HttpGet("{id}")]
+        public IActionResult ObtenerPeliculaPorID(int id)
+        {
+            // 1. Buscar la pelicula en su base de datos usando Clave Primaria (Id)
+            var pelicula = _context.Peliculas.Find(id);
+
+            // 2. Si no existe, devolver un error 404 (Not Found)
+            if (pelicula == null) 
+            {
+                return NotFound(new { mensaje = $"No se encontró ninguna película con el ID {id}." });
+            }
+
+            // 3. Si existe, devolverla con un codigo 200 Ok
+            return Ok(pelicula);
+        }
+
     }
 
 }
