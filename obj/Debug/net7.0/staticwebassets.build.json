@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "6i9IWvlfXr2RNl5KImSRWio4Iib324mdZEyyQGeeaX4=",
-  "Source": "ReelTalk.Api",
-  "BasePath": "_content/ReelTalk.Api",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"Gfn1erHCkvLMH0LmSo2z+LnS2fCTiQRYzIN7+25TJX0=","Source":"ReelTalk.Api","BasePath":"_content/ReelTalk.Api","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}

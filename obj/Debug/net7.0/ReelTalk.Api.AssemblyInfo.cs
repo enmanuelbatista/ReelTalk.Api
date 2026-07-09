@@ -11,10 +11,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("d89cfea6-2001-4d7d-a3a4-ccb7ce2491c0")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReelTalk.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+412722e1269f43538085460135416a99728f8117")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReelTalk.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReelTalk.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
