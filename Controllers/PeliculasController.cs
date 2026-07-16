@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReelTalk.Api.Data;
 using ReelTalk.Api.Modelos;
+using ReelTalk.Api.Services;
 
 namespace ReelTalk.Api.Controllers
 {
@@ -8,13 +9,17 @@ namespace ReelTalk.Api.Controllers
     [Route("api/[controller]")]
     public class PeliculasController : ControllerBase
     {
+
         private readonly ReelTalkDbContext _context;
+        private readonly OmdbService _omdbService;
+
 
         //inyectamos nuestro DBContext a traves del constructor
 
-        public PeliculasController(ReelTalkDbContext context)
+        public PeliculasController(ReelTalkDbContext context, OmdbService omdbService)
         {
             _context = context;
+            _omdbService = omdbService;
         }
 
         [HttpPost]
@@ -84,6 +89,21 @@ namespace ReelTalk.Api.Controllers
 
             // 3. Si existe, devolverla con un codigo 200 Ok
             return Ok(pelicula);
+        }
+
+        [HttpGet("omdb-prueba/{imdbId}")]
+        public async Task<IActionResult> ProbarOmdb(string imdbId)
+        {
+            // Llamamos al servicio para traer el JSON puro desde internet
+            var jsonResultado = await _omdbService.ObtenerPeliculaPorImdbIdAsync(imdbId);
+
+            if (jsonResultado == null)
+            {
+                return NotFound("No se pudo obtener información desde OMDb.");
+            }
+
+            // Retornamos el JSON directamente al navegador/Swagger para inspeccionarlo
+            return Content(jsonResultado, "application/json");
         }
 
     }

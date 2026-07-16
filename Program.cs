@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using ReelTalk.Api.Data;
+using ReelTalk.Api.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddHttpClient();
+builder.Services.AddScoped<OmdbService>();
 
 // === NUEVO: Registramos nuestro DbContext y le decimos que use SQL Server ===
 var connectionString = builder.Configuration.GetConnectionString("CadenaSQL");
