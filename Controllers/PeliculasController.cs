@@ -91,21 +91,6 @@ namespace ReelTalk.Api.Controllers
             return Ok(pelicula);
         }
 
-        [HttpGet("omdb-prueba/{imdbId}")]
-        public async Task<IActionResult> ProbarOmdb(string imdbId)
-        {
-            // Llamamos al servicio para traer el JSON puro desde internet
-            var jsonResultado = await _omdbService.ObtenerPeliculaPorImdbIdAsync(imdbId);
-
-            if (jsonResultado == null)
-            {
-                return NotFound("No se pudo obtener información desde OMDb.");
-            }
-
-            // Retornamos el JSON directamente al navegador/Swagger para inspeccionarlo
-            return Content(jsonResultado, "application/json");
-        }
-
     }
 
 }

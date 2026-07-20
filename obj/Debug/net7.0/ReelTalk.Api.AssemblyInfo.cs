@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReelTalk.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0ffb04cec2494adac024a48018516702f1bc4634")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+51a3066761f08f512759143d91d13a28d4083c8c")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReelTalk.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReelTalk.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

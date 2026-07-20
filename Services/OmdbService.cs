@@ -1,6 +1,8 @@
 ﻿using System.Net.Http;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using ReelTalk.Api.DTOs; // <-- Importante: para que reconozca nuestro DTO
 
 namespace ReelTalk.Api.Services
 {
@@ -10,7 +12,6 @@ namespace ReelTalk.Api.Services
         private readonly string _apiKey;
         private readonly string _baseUrl;
 
-        // El constructor recibe el HttpClient e inyecta la configuración (Secret Manager)
         public OmdbService(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
@@ -18,24 +19,34 @@ namespace ReelTalk.Api.Services
             _baseUrl = configuration["OmdbApi:BaseUrl"];
         }
 
-        // Método asíncrono para buscar una película en OMDb usando su ID de IMDb (ej: tt0111161)
-        public async Task<string> ObtenerPeliculaPorImdbIdAsync(string imdbId)
+        // Devuelve Task de un objeto de tipo OmdbPeliculaResponse (puede ser nulo "?")
+        public async Task<OmdbPeliculaResponse?> ObtenerPeliculaPorImdbIdAsync(string imdbId)
         {
-            // Construimos la URL uniendo la base, el ID de la película (i) y tu clave secreta (apikey)
             var url = $"{_baseUrl}?i={imdbId}&apikey={_apiKey}";
-
-            // Realizamos la petición HTTP GET de forma asíncrona
             var respuesta = await _httpClient.GetAsync(url);
 
             if (respuesta.IsSuccessStatusCode)
             {
-                // Si el servidor de OMDb responde bien (200 OK), leemos el JSON crudo como texto
-                return await respuesta.Content.ReadAsStringAsync();
+                // 1. Leemos el JSON como texto plano de internet
+                var jsonString = await respuesta.Content.ReadAsStringAsync();
+
+                // 2. Configuramos el lector para que no sea estricto con las mayúsculas/minúsculas
+                var opciones = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+
+                // 3. Deserializamos: Convertimos el texto JSON a un objeto real de C#
+                var peliculaDto = JsonSerializer.Deserialize<OmdbPeliculaResponse>(jsonString, opciones);
+
+                // 4. OMDb a veces responde "200 OK" pero con un JSON que dice "Response: False" (si el ID no existe)
+                if (peliculaDto != null && peliculaDto.Response == "True")
+                {
+                    return peliculaDto;
+                }
             }
 
-            return null;
-
+            return null; // Retornamos nulo si algo falló o la película no existe
         }
+    }
 }
 
-}
+
+
