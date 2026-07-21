@@ -10,7 +10,7 @@ namespace ReelTalk.Api.Modelos
         }
 
 
-        public Pelicula(int idexternotmdb, string titulo, string sinopsis, DateTime fechalanzamiento, int duracionminutos, string? directores, string? actores,
+        public Pelicula(string? idexternotmdb, string titulo, string sinopsis, DateTime fechalanzamiento, int duracionminutos, string? directores, string? actores,
             string? categorias) 
         {
             // === BLOQUE 1: EL CONSTRUCTOR ===
@@ -33,7 +33,7 @@ namespace ReelTalk.Api.Modelos
         // Estas son las que guardan la información permanentemente en el objeto.
 
         public int Id { get; set; } // SQL Server necesita poder escribir aquí al generar el ID
-        public int IDExternoTMDB { get; init; }
+        public string? IDExternoTMDB { get; init; }
         public string Titulo { get; init; } = string.Empty;
         public string Sinopsis { get; init; } = string.Empty;
         public DateTime FechaLanzamiento { get; init; }

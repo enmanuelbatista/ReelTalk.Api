@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ReelTalk.Api.Data;
 using ReelTalk.Api.Modelos;
 using ReelTalk.Api.Services;
@@ -90,6 +91,66 @@ namespace ReelTalk.Api.Controllers
             // 3. Si existe, devolverla con un codigo 200 Ok
             return Ok(pelicula);
         }
+
+
+        [HttpPost("importar/{imdbId}")]
+        public async Task<IActionResult> ImportarPelicula(string imdbId)
+        {
+            // 1. Validar que el ID no esté vacío
+            if (string.IsNullOrWhiteSpace(imdbId))
+            {
+                return BadRequest("El ID de IMDb no puede estar vacío.");
+            }
+
+            // NUEVO - 1.5: Validar si la película ya existe en SQL Server
+            bool yaExiste = await _context.Peliculas
+                .AnyAsync(p => p.IDExternoTMDB == imdbId);
+
+            if (yaExiste)
+            {
+                return Conflict($"La película con el ID '{imdbId}' ya se encuentra importada en la base de datos.");
+            }
+
+            // 2. Consultar a OMDb
+            var omdbRespuesta = await _omdbService.ObtenerPeliculaPorImdbIdAsync(imdbId);
+
+            if (omdbRespuesta == null)
+            {
+                return NotFound($"No se encontró ninguna película en OMDb con el ID: {imdbId}");
+            }
+
+            // 3. Conversiones de datos para mantener coherencia
+            // Convertir fecha de lanzamiento (ej: "16 Jul 2010" -> DateTime)
+            DateTime.TryParse(omdbRespuesta.Released, out DateTime fechaLanzamiento);
+
+            // Convertir duración (ej: "148 min" -> extrae solo el número 148)
+            int duracionMinutos = 0;
+            if (!string.IsNullOrEmpty(omdbRespuesta.Runtime))
+            {
+                var duracionTexto = omdbRespuesta.Runtime.Replace("min", "").Trim();
+                int.TryParse(duracionTexto, out duracionMinutos);
+            }
+
+            // 4. Instanciar el objeto Pelicula con datos completos y coherentes
+            var nuevaPelicula = new Pelicula(
+                idexternotmdb: imdbId,
+                titulo: omdbRespuesta.Title,
+                sinopsis: omdbRespuesta.Plot,
+                fechalanzamiento: fechaLanzamiento,
+                duracionminutos: duracionMinutos,
+                directores: omdbRespuesta.Director,
+                actores: omdbRespuesta.Actors,
+                categorias: omdbRespuesta.Genre
+            );
+
+            // 5. Guardar en SQL Server
+            _context.Peliculas.Add(nuevaPelicula);
+            await _context.SaveChangesAsync();
+
+            // 6. Retornar respuesta HTTP 201 Created
+            return CreatedAtAction(nameof(ObtenerPeliculaPorID), new { id = nuevaPelicula.Id }, nuevaPelicula);
+        }
+
 
     }
 

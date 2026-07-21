@@ -76,5 +76,5 @@ C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\rjsm
 C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\rjsmcshtml.dswa.cache.json
 C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\staticwebassets.build.json.cache
 C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\staticwebassets.build.endpoints.json
-C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
 C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\ReelTalk.97073104.Up2Date
+C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
