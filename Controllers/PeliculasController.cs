@@ -4,6 +4,7 @@ using ReelTalk.Api.Data;
 using ReelTalk.Api.Modelos;
 using ReelTalk.Api.Services;
 
+
 namespace ReelTalk.Api.Controllers
 {
     [ApiController]
@@ -24,19 +25,31 @@ namespace ReelTalk.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult CrearPelicula([FromBody] Pelicula nuevaPelicula)
+        public async Task<IActionResult> CrearPelicula([FromBody] Pelicula nuevaPelicula)
         {
-            // 1. Validar que el objeto no venga vacio 
+            // 1. Validar que el objeto no venga vacío
             if (nuevaPelicula == null)
             {
-                return BadRequest("Los datos de la pelicula no son válidos.");
+                return BadRequest("Los datos de la película no son válidos.");
+            }
+
+            // 1.1 Validar duplicados si se proporciona un ID externo (TMDB/IMDb)
+            if (!string.IsNullOrWhiteSpace(nuevaPelicula.IDExternoTMDB))
+            {
+                bool yaExiste = await _context.Peliculas
+                    .AnyAsync(p => p.IDExternoTMDB == nuevaPelicula.IDExternoTMDB);
+
+                if (yaExiste)
+                {
+                    return Conflict($"Ya existe una película registrada con el ID externo '{nuevaPelicula.IDExternoTMDB}'.");
+                }
             }
 
             // 2. Preparar el objeto de Entity Framework Core
             _context.Peliculas.Add(nuevaPelicula);
 
-            // 3. Impactar y guardar los cambios reales en el SQL Server
-            _context.SaveChanges();
+            // 3. Impactar y guardar los cambios reales en el SQL Server de forma asíncrona
+            await _context.SaveChangesAsync();
 
             // 4. Retornar una respuesta exitosa (HTTP 200 OK)
             return Ok(new { mensaje = "Película creada con éxito", datos = nuevaPelicula });
