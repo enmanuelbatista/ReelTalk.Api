@@ -33,13 +33,13 @@ namespace ReelTalk.Api.Modelos
         // Estas son las que guardan la información permanentemente en el objeto.
 
         public int Id { get; set; } // SQL Server necesita poder escribir aquí al generar el ID
-        public string? IDExternoTMDB { get; init; }
-        public string Titulo { get; init; } = string.Empty;
-        public string Sinopsis { get; init; } = string.Empty;
-        public DateTime FechaLanzamiento { get; init; }
-        public int DuracionMinutos { get; init; }
-        public string? Directores { get; init; }
-        public string? Actores { get; init; }
-        public string? Categorias { get; init; }
+        public string? IDExternoTMDB { get; set; }
+        public string Titulo { get; set; } = string.Empty;
+        public string Sinopsis { get; set; } = string.Empty;
+        public DateTime FechaLanzamiento { get; set; }
+        public int DuracionMinutos { get; set; }
+        public string? Directores { get; set; }
+        public string? Actores { get; set; }
+        public string? Categorias { get; set; }
     }
 }
