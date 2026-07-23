@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ReelTalk.Api.Data;
 using ReelTalk.Api.Services;
+using ReelTalk.Api.Middlewares;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +20,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+app.UseMiddleware<GlobalExceptionMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
