@@ -19,7 +19,7 @@ API REST para un catálogo de películas construida con **ASP.NET Core (.NET 7)*
 ## Tecnologías
 
 - **ASP.NET Core Web API** / .NET 7
-- **Entity Framework Core 7** (SQL Server)
+- **Entity Framework Core ** (SQL Server)
 - **JWT Bearer Authentication** (`Microsoft.AspNetCore.Authentication.JwtBearer`)
 - **ASP.NET Core Identity** — hasheo de contraseñas (`IPasswordHasher<T>`)
 - **Swagger** — documentación interactiva de la API
