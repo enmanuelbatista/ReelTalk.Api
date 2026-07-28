@@ -78,3 +78,4 @@ C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\stat
 C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\staticwebassets.build.endpoints.json
 C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\ReelTalk.97073104.Up2Date
 C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
+C:\Users\PC\Desktop\Proyectos de programacion\ReelTalk.Api\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -14,5 +14,8 @@ namespace ReelTalk.Api.Data
 
         // Esta propiedad le dice a EF Core: "Crea una tabla llamada 'Peliculas' basada en la clase Pelicula"
         public DbSet<Pelicula> Peliculas { get; set; }
+
+        // Esta propiedad le dice a EF Core: "Crea una tabla llamada 'Usuarios' basada en la clase Usuario"
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

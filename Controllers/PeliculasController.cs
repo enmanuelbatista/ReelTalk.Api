@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ReelTalk.Api.Data;
 using ReelTalk.Api.Modelos;
 using ReelTalk.Api.Services;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace ReelTalk.Api.Controllers
@@ -25,6 +26,7 @@ namespace ReelTalk.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> CrearPelicula([FromBody] Pelicula nuevaPelicula)
         {
             // 1. Validar que el objeto no venga vacío
@@ -36,8 +38,7 @@ namespace ReelTalk.Api.Controllers
             // 1.1 Validar duplicados si se proporciona un ID externo (TMDB/IMDb)
             if (!string.IsNullOrWhiteSpace(nuevaPelicula.IDExternoTMDB))
             {
-                bool yaExiste = await _context.Peliculas
-                    .AnyAsync(p => p.IDExternoTMDB == nuevaPelicula.IDExternoTMDB);
+                bool yaExiste = await _context.Peliculas.AnyAsync(p => p.IDExternoTMDB == nuevaPelicula.IDExternoTMDB);
 
                 if (yaExiste)
                 {
@@ -56,6 +57,7 @@ namespace ReelTalk.Api.Controllers
         }
 
         [HttpPost("importar/{imdbId}")]
+        [Authorize]
         public async Task<IActionResult> ImportarPelicula(string imdbId)
         {
             // 1. Validar que el ID no esté vacío
@@ -65,8 +67,7 @@ namespace ReelTalk.Api.Controllers
             }
 
             // NUEVO - 1.5: Validar si la película ya existe en SQL Server
-            bool yaExiste = await _context.Peliculas
-                .AnyAsync(p => p.IDExternoTMDB == imdbId);
+            bool yaExiste = await _context.Peliculas.AnyAsync(p => p.IDExternoTMDB == imdbId);
 
             if (yaExiste)
             {
@@ -141,6 +142,7 @@ namespace ReelTalk.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize]
         public IActionResult BorrarPelicula(int id) 
         {
             // 1. Buscar si la película realmente existe en la base de datos
@@ -164,6 +166,7 @@ namespace ReelTalk.Api.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> ActualizarPelicula(int id, [FromBody] Pelicula peliculaActualizada)
         {
             // 1. Validar que el ID del parámetro coincida con el objeto

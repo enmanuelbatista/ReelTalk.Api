@@ -8,10 +8,12 @@
     ".NETCoreApp,Version=v7.0": {
       "ReelTalk.Api/1.0.0": {
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.20",
           "Microsoft.AspNetCore.OpenApi": "7.0.12",
           "Microsoft.EntityFrameworkCore": "7.0.20",
           "Microsoft.EntityFrameworkCore.Design": "7.0.20",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.20",
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.20",
           "Swashbuckle.AspNetCore": "6.5.0"
         },
         "runtime": {
@@ -57,6 +59,17 @@
           "lib/net6.0/Humanizer.dll": {
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
+          }
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.20": {
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "6.35.0"
+        },
+        "runtime": {
+          "lib/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "assemblyVersion": "7.0.20.0",
+            "fileVersion": "7.0.2024.26907"
           }
         }
       },
@@ -201,6 +214,11 @@
             "assemblyVersion": "7.0.20.0",
             "fileVersion": "7.0.2024.26903"
           }
+        }
+      },
+      "Microsoft.EntityFrameworkCore.Tools/7.0.20": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "7.0.20"
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/6.0.5": {},
@@ -645,6 +663,13 @@
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
     },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/7.0.20": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lIjUAxtqNv+bD+Bnlksu96/haMLfuXA7nASXUnvxXfFWA3YEov7pM5AtvlelvQCtwFvu1LR4SFryHvLur491Qg==",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/7.0.20",
+      "hashPath": "microsoft.aspnetcore.authentication.jwtbearer.7.0.20.nupkg.sha512"
+    },
     "Microsoft.AspNetCore.OpenApi/7.0.12": {
       "type": "package",
       "serviceable": true,
@@ -721,6 +746,13 @@
       "sha512": "sha512-ukRrvvgDRbs5At/4zQv84gxi+arXvuwRvUHL1cQOdWyOAvSBBieVSmbFhR8ihbbE1Czo3MduxJ+eF2ztHVYC3A==",
       "path": "microsoft.entityframeworkcore.sqlserver/7.0.20",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.7.0.20.nupkg.sha512"
+    },
+    "Microsoft.EntityFrameworkCore.Tools/7.0.20": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-tu4A/gRuWxAg0c+7i+SzP5VYDwPUTgcND6ymNxwgcLBXr24tG16sNqUn7/fpMhBTeXIpceHu5DgQ2RJTtwoJag==",
+      "path": "microsoft.entityframeworkcore.tools/7.0.20",
+      "hashPath": "microsoft.entityframeworkcore.tools.7.0.20.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/6.0.5": {
       "type": "package",
