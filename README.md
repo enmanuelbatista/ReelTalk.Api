@@ -1,6 +1,6 @@
 # ReelTalk.Api
 
-API REST para un catálogo de películas construida con **.NET 7**, **Entity Framework Core** y **SQL Server**. Permite registrar, modificar, eliminar y consultar películas, importarlas automáticamente desde [OMDb API](https://www.omdbapi.com/) usando el ID de IMDb, y protege las operaciones de escritura con autenticación **JWT (JSON Web Tokens)**.
+API REST para un catálogo de películas construida con **ASP.NET Core (.NET 7)**, **Entity Framework Core** y **SQL Server**. Permite registrar, modificar, eliminar y consultar películas, importarlas automáticamente desde [OMDb API](https://www.omdbapi.com/) usando el ID de IMDb, y protege las operaciones de escritura con autenticación **JWT (JSON Web Tokens)**.
 
 ## Tabla de contenidos
 
